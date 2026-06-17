@@ -1,0 +1,29 @@
+modLoader="javafxmod"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="xaeromark"
+version="${file.jarVersion}"
+displayName="Xaero Mark Addon"
+displayURL="https://github.com/S2so2/xaero-mark-addon"
+logoFile="examplelogo.png"
+credits="Created by S2so2"
+authors="S2so2"
+description="'''
+A simple Forge mod that adds a command to mark waypoints in Xaero's Minimap.
+'''"
+
+[[dependencies.xaeromark]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.xaeromark]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="NONE"
+    side="BOTH"

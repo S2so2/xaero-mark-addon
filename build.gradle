@@ -1,0 +1,72 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.parchmentmc.librarian' version '1.+'
+}
+
+group = 'com.s2so2.xaeromark'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+minecraft {
+    mappings channel: 'parchment', version: '2023.12.31-1.20.1'
+    
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                xaeromark {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "Forge"
+        url = "https://maven.minecraftforge.net"
+    }
+    maven {
+        name = "ParchmentMC"
+        url = "https://maven.parchmentmc.org"
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.20'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    withSourcesJar()
+}
+
+jars {
+    jar {
+        manifest {
+            attributes([
+                'Specification-Title'      : 'xaeromark',
+                'Specification-Vendor'     : 's2so2',
+                'Specification-Version'    : '1',
+                'Implementation-Title'     : project.name,
+                'Implementation-Version'   : project.jar.archiveVersion,
+                'Implementation-Vendor'    : 's2so2',
+                'Implementation-Timestamp' : new java.text.SimpleDateFormat('yyyy-MM-dd\'T\'HH:mm:ssZ').format(new java.util.Date()),
+                'Built-On'                 : new java.text.SimpleDateFormat('yyyy-MM-dd\'T\'HH:mm:ssZ').format(new java.util.Date()),
+                'Build-On-Java'            : System.getProperty('java.version') + ' (\'' + System.getProperty('java.vendor') + '\')'
+            ])
+        }
+    }
+}
